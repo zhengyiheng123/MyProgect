@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <LinearLayout
+        android:layout_width="@dimen/login_width_pad"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/huan_tuo_icon" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_course_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="《人力资源高级VIP班》"
+            android:textColor="#333"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/login_userId_layout"
+            style="@style/Login_edit_layout_style"
+            android:background="@drawable/login_edit_bg_selected"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/login_userId_label"
+                    style="@style/Login_textView_style"
+                    android:text="@string/live_ID" />
+
+                <ImageView
+                    android:id="@+id/iv_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/arrow_selected" />
+            </LinearLayout>
+
+            <cloudlive.view.ClearEditText
+                android:id="@+id/login_userId_edit"
+                style="@style/Login_ediText_style"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/login_password_layout"
+            style="@style/Login_edit_layout_style"
+            android:background="@drawable/login_edit_bg_selected">
+
+            <TextView
+                android:id="@+id/login_password_label"
+                style="@style/Login_textView_style"
+                android:layout_width="80dp"
+                android:text="@string/live_password" />
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <cloudlive.view.ClearEditText
+                    android:id="@+id/login_password_edit"
+                    style="@style/Login_ediText_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="若是公开课,无需密码"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/light_gray" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_nickname_layout"
+            style="@style/Login_edit_layout_style"
+            android:background="@drawable/login_edit_bg_selected">
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                style="@style/Login_textView_style"
+                android:layout_width="80dp"
+                android:text="@string/nickname_new" />
+
+            <cloudlive.view.ClearEditText
+                android:id="@+id/ed_nickname_edit"
+                style="@style/Login_ediText_style"
+                android:background="@null"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/login_tip"
+            layout="@layout/tip_layout" />
+
+        <Button
+            android:id="@+id/login_btn"
+            style="@style/LoginButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/round_button"
+            android:text="@string/live_log_label" />
+    </LinearLayout>
+</LinearLayout>
