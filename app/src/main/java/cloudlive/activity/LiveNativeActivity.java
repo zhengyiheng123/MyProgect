@@ -58,6 +58,7 @@ import cloudlive.helper.NetChoiseDiologHelper;
 import cloudlive.net.NetMonitor;
 import cloudlive.util.DanmakuFlameUtil;
 import cloudlive.util.DimensionUtils;
+import cloudlive.util.EventBusUtil;
 import cloudlive.util.JsonUtil;
 import cloudlive.util.ScreenSwitchUtils;
 import cloudlive.util.SharedPreferencesUtil;
@@ -109,6 +110,12 @@ public class LiveNativeActivity extends BasePlayActivity implements
     @BindView(R.id.ll_bottom_menu)
     LinearLayout llBottomMenu;
 
+    @BindView(R.id.tv_numbers)
+    TextView tv_numbers;
+
+    @BindView(R.id.tv_resource_title)
+    TextView tvResourceTitle;
+
     //    @BindView(R.id.mongolia_layer)
 //    FrameLayout mongoliaLayer;   //蒙层
 
@@ -148,6 +155,7 @@ public class LiveNativeActivity extends BasePlayActivity implements
      * 投票
      */
     private LiveVoteDialogHelper mLiveVoteDialogHelper;
+    private String title;
 
 
     @Override
@@ -752,6 +760,9 @@ public class LiveNativeActivity extends BasePlayActivity implements
                 mLiveMessageView.showNotice();
             }
         }
+        if (roomInfo!=null){
+            tvResourceTitle.setText(roomInfo.getLiveTitle());
+        }
         if (roomInfo.getRollEntity() != null) {
             if (mRollHelper != null) {
                 mRollHelper.receiveRollAnnounce(roomInfo.getRollEntity());
@@ -829,20 +840,13 @@ public class LiveNativeActivity extends BasePlayActivity implements
                     if ("1".equals(memberFloatTVEnable) && isLiveStart) {
                         memberFloatTV.setVisibility(View.VISIBLE);
                         memberFloatTV.setText(total + "人");
+                        EventBusUtil.postEvent(new Event(EventType.ONLINE_NUMBERS, total));
                     } else {
                         memberFloatTV.setVisibility(View.GONE);
                     }
                 }
             }
         }
-//        Log.d("total", total + "");
-//        if (total == 0) {
-//            memberFloatTV.setVisibility(View.GONE);
-//            return;
-//        }
-//        memberFloatTV.setVisibility(View.VISIBLE);
-
-        //tvMemberTotal.setText(total + "人");
     }
 
     @Override
@@ -865,7 +869,9 @@ public class LiveNativeActivity extends BasePlayActivity implements
                     }
                     break;
                 case EventType.ADDDANMAKU:
-                    if (danmakuFlameUtil == null) return;
+                    if (danmakuFlameUtil == null) {
+                        return;
+                    }
                     if (danmakuFlameUtil.isShown()) {   //如果弹幕 view 显示才添加弹幕信息
                         danmakuFlameUtil.addDanmaku((SpannableString) message.getData(), false);
                     }
@@ -888,6 +894,11 @@ public class LiveNativeActivity extends BasePlayActivity implements
                     if (netStatus == NetMonitor.NETWORK_NONE) {
                         AlertDialogFactory.showAlertDialog(this.getSupportFragmentManager(), getResources().getString(R.string.tips), getResources().getString(R.string.not_connect), null);
                     }
+                    break;
+                case EventType.ONLINE_NUMBERS:
+                    tv_numbers.setText("房间人数："+message.getData().toString());
+                    break;
+                default:
                     break;
             }
         }

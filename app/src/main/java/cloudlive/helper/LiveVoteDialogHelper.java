@@ -78,8 +78,9 @@ public class LiveVoteDialogHelper implements HtVoteListener {
     //投票结束
     @Override
     public void voteStop(VotePubEntity votePubEntity) {
-        if (votePubEntity == null || votePubEntity.getIsShow() == 0)
+        if (votePubEntity == null || votePubEntity.getIsShow() == 0) {
             return;
+        }
         String voteId = votePubEntity.getVid();
         if (!TextUtils.isEmpty(voteId)) {
             if (!votePubMap.containsKey(voteId)) {

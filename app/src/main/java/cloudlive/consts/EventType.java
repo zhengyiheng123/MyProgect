@@ -28,8 +28,12 @@ public class EventType {
 
     /**
      * 网络状态变化
-    */
+     */
     public static final int NETWORK_STATE_CHANGE = 0X7F050005;
+    /**
+     * 更新观看直播人数
+     */
+    public static final int ONLINE_NUMBERS = 0X7F050006;
 }
 
 

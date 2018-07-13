@@ -54,8 +54,9 @@ public class ChatFragment extends Fragment implements IDispatchChatMessage {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && chatAdapter != null)
+        if (isVisibleToUser && chatAdapter != null) {
             chatAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -93,7 +94,9 @@ public class ChatFragment extends Fragment implements IDispatchChatMessage {
      * @param isShow
      */
     public void showReplyTip(boolean isShow) {
-        if (llReplyTip == null) return;
+        if (llReplyTip == null) {
+            return;
+        }
         llReplyTip.setVisibility(isShow == true ? View.VISIBLE : View.GONE);
     }
 
@@ -122,8 +125,9 @@ public class ChatFragment extends Fragment implements IDispatchChatMessage {
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         try {
-            if (savedInstanceState == null)
+            if (savedInstanceState == null) {
                 return;
+            }
             ArrayList<Object> list = (ArrayList<Object>) savedInstanceState.getSerializable("list");
             if (list != null && list.size() > 0) {
                 if (chatAdapter != null) {
@@ -152,15 +156,17 @@ public class ChatFragment extends Fragment implements IDispatchChatMessage {
                     listener.appendNewChatMes(spannableString);
                 }
             }
-            if (chatLv != null)
+            if (chatLv != null) {
                 chatLv.setSelection(chatAdapter.getCount() - 1);
+            }
         }
     }
 
     public void appendList(final ChatEntity chatEntity) {
         chatAdapter.appendList(chatEntity);
-        if (chatLv != null)
+        if (chatLv != null) {
             chatLv.setSelection(chatAdapter.getCount() - 1);
+        }
 
     }
 
@@ -168,7 +174,9 @@ public class ChatFragment extends Fragment implements IDispatchChatMessage {
      * 清空聊天信息
      */
     public void clearAllMessage() {
-        if (chatAdapter == null) return;
+        if (chatAdapter == null) {
+            return;
+        }
         chatAdapter.clearItems();
     }
 

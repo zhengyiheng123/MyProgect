@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.myprogect.R;
@@ -26,6 +27,9 @@ import com.talkfun.sdk.module.ChatEntity;
 import com.talkfun.sdk.module.NoticeEntity;
 import com.talkfun.sdk.module.QuestionEntity;
 import com.talkfun.sdk.module.RoomInfo;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

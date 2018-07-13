@@ -58,12 +58,13 @@ public class LoginJumpActivity extends BaseActivity {
 //            Glide.with(this).load(logoUrl).apply(requestOptions).into(ivLogo);
             GlideImageLoader.create(ivLogo).loadImage(logoUrl, R.mipmap.huan_tuo_icon);
         }
-        if (!TextUtils.isEmpty(title))
+        if (!TextUtils.isEmpty(title)) {
             tvCourseName.setText(title);
+        }
     }
 
     private void initEvent() {
-        handler.postDelayed(myRunnale, 2000);
+        handler.postDelayed(myRunnale, 1000);
     }
 
     @Override

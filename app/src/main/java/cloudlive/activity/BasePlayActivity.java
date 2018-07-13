@@ -480,8 +480,9 @@ public abstract class BasePlayActivity extends BaseActivity implements View.OnTo
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void eventCallback(Event message) {
-        if(message == null)
+        if(message == null) {
             return;
+        }
         if(message.getType() == EventType.NETWORK_STATE_CHANGE){
             int netStatus = (int) message.getData();
             if(netStatus == NetMonitor.NETWORK_NONE){

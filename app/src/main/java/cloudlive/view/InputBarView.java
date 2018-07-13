@@ -147,8 +147,9 @@ public class InputBarView extends LinearLayout implements OnExpressionListener, 
         switch (v.getId()) {
             case R.id.send_btn:
                 // if (!canInput && currentItem == 0)  //禁言模式
-                if (!canInput)
+                if (!canInput) {
                     return;
+                }
                 sendContent = inputEdt.getText().toString().trim();
                 if (!isOpen && ScreenSwitchUtils.getInstance(getContext()).isSensorSwitchLandScreen()) {
                     switchInputAreaLength(false);
